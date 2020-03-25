@@ -16,8 +16,7 @@
     "build": "father build && webpack",
     "prepublishOnly": "npm run build ",
     "prettier": "prettier -c --write \"**/*\"",
-    "start": "dumi dev",
-    "publish": "npm publish"
+    "start": "dumi dev"
   },
   "browserslist": [
     "> 1%",

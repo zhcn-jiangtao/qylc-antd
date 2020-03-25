@@ -31,7 +31,9 @@ export type ProColumnsValueType =
   | 'indexBorder'
   | 'progress'
   | 'percent'
-  | 'digit';
+  | 'digit'
+  | 'boolean'
+    ;
 
 // function return type
 export type ProColumnsValueObjectType = {
@@ -112,6 +114,10 @@ const defaultRenderText = <T, U>(
     if (typeof value === 'object') {
       return defaultRenderTextByObject(text as string, value);
     }
+  }
+
+  if(valueType === 'boolean' && text != null) {
+    return text ? '是' : '否'
   }
 
   /**

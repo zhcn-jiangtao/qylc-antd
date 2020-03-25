@@ -18,12 +18,16 @@ const columns = [
     width: 200,
     hideInSearch: true,
   },
-
+  {
+    title: '是否禁用',
+    dataIndex: 'disabled',
+    valueType: 'boolean',
+    hideInForm: true,
+  },
   {
     title: '创建时间',
-    key: 'since',
     dataIndex: 'createTime',
-    valueType: 'dateTime',
+    valueType: 'datetime',
     hideInForm: true,
   },
   {
