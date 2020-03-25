@@ -555,6 +555,7 @@ const ProTable = <T extends {}, U extends object>(
 
   action.fullScreen = fullScreen.current;
 
+  // @ts-ignore
   const pagination = propsPagination !== false && mergePagination<T[], {}>(propsPagination, action);
 
   const counter = Container.useContainer();
