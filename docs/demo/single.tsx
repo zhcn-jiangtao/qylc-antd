@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Drawer, Tag } from 'antd';
-import ProTable, { TableDropdown, ActionType } from 'qylc-pro-table';
+import React, {useRef} from 'react';
+import {PlusOutlined} from '@ant-design/icons';
+import {Button} from 'antd';
+import ProTable, {ActionType, TableDropdown} from 'qylc-pro-table';
 import request from 'umi-request';
 
 const columns = [

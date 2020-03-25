@@ -1,6 +1,6 @@
 {
   "name": "qylc-pro-table",
-  "version": "2.1.15",
+  "version": "2.1.18",
   "description": "🏆 Use Ant Design Table like a Pro!",
   "repository": "https://github.com/qylc/pro-table",
   "license": "MIT",
@@ -16,7 +16,8 @@
     "build": "father build && webpack",
     "prepublishOnly": "npm run build ",
     "prettier": "prettier -c --write \"**/*\"",
-    "start": "dumi dev"
+    "start": "dumi dev",
+    "publish": "npm publish"
   },
   "browserslist": [
     "> 1%",

@@ -494,6 +494,19 @@ const ProTable = <T extends {}, U extends object>(
     ...rest
   } = props;
 
+  // add by jt: set default value
+  if(rest.rowKey == null) {
+    rest.rowKey = 'id';
+  }
+  if(rest.bordered == null) {
+    rest.bordered = true;
+  }
+
+  if(rest.size == null) {
+    rest.size="middle"
+  }
+
+
   const [selectedRowKeys, setSelectedRowKeys] = useMergeValue<React.ReactText[]>([], {
     value: propsRowSelection ? propsRowSelection.selectedRowKeys : undefined,
   });
@@ -521,7 +534,7 @@ const ProTable = <T extends {}, U extends object>(
           success: true,
         } as RequestData<T>;
       }
-      const rs = await request({ current, pageSize, ...formSearch, ...params } as U);
+      const rs = await request({ pageNumber:current, pageSize, ...formSearch, ...params } as U);
 
       const msg = { data: rs.content, total: rs.totalElements };
 
