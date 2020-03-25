@@ -45,3 +45,4 @@ example/.temp/*
 .eslintcache
 lib/**
 es/**
+/ant-pro-table.iml

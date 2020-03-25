@@ -10,7 +10,11 @@ import { FormItemProps, FormProps } from 'antd/es/form';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
 
 import { IntlProvider, IntlConsumer, IntlType } from './component/intlContext';
-import useFetchData, { UseFetchDataAction, RequestData } from './useFetchData';
+import useFetchData, {
+  UseFetchDataAction,
+  RequestData,
+  RequestSpringMVCData,
+} from './useFetchData';
 import Container from './container';
 import Toolbar, { OptionConfig, ToolBarProps } from './component/toolBar';
 import Alert from './component/alert';
@@ -161,7 +165,7 @@ export interface ProTableProps<T, U extends { [key: string]: any }>
       pageSize?: number;
       current?: number;
     },
-  ) => Promise<RequestData<T>>;
+  ) => Promise<RequestSpringMVCData<T>>;
 
   /**
    * 对数据进行一些处理
@@ -425,7 +429,7 @@ const genColumnList = <T, U = {}>(
         },
         index: columnsIndex,
         filters: parsingValueEnumToArray(item.valueEnum).filter(
-          valueItem => valueItem && valueItem.value !== 'all',
+          (valueItem) => valueItem && valueItem.value !== 'all',
         ),
         ...item,
         ellipsis: false,
@@ -446,7 +450,7 @@ const genColumnList = <T, U = {}>(
       }
       return tempColumns;
     })
-    .filter(item => !item.hideInTable) as unknown) as ColumnsType<T>[number] &
+    .filter((item) => !item.hideInTable) as unknown) as ColumnsType<T>[number] &
     {
       index?: number;
     }[];
@@ -517,7 +521,10 @@ const ProTable = <T extends {}, U extends object>(
           success: true,
         } as RequestData<T>;
       }
-      const msg = await request({ current, pageSize, ...formSearch, ...params } as U);
+      const rs = await request({ current, pageSize, ...formSearch, ...params } as U);
+
+      const msg = { data: rs.content, total: rs.totalElements };
+
       if (postData) {
         return { ...msg, data: postData(msg.data) };
       }
@@ -720,7 +727,7 @@ const ProTable = <T extends {}, U extends object>(
             {...rest}
             type={props.type}
             formRef={formRef}
-            onSubmit={value => {
+            onSubmit={(value) => {
               if (type !== 'form') {
                 setFormSearch(
                   beforeSearchSubmit({
@@ -780,7 +787,7 @@ const ProTable = <T extends {}, U extends object>(
               rowSelection={propsRowSelection === false ? undefined : rowSelection}
               className={tableClassName}
               style={tableStyle}
-              columns={counter.columns.filter(item => {
+              columns={counter.columns.filter((item) => {
                 // 删掉不应该显示的
                 const { key, dataIndex } = item;
                 const columnKey = genColumnKey(key, dataIndex);
@@ -814,7 +821,7 @@ const ProviderWarp = <T, U extends { [key: string]: any } = {}>(props: ProTableP
     <ConfigConsumer>
       {({ getPrefixCls }: ConfigConsumerProps) => (
         <IntlConsumer>
-          {value => (
+          {(value) => (
             <IntlProvider value={value}>
               <ProTable defaultClassName={getPrefixCls('pro-table')} {...props} />
             </IntlProvider>

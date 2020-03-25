@@ -15,6 +15,12 @@ export interface RequestData<T> {
   success?: boolean;
   total?: number;
 }
+
+export interface RequestSpringMVCData<T> {
+  content: T[];
+  totalElements?: number;
+}
+
 export interface UseFetchDataAction<T extends RequestData<any>> {
   dataSource: T['data'] | T;
   loading: boolean | undefined;
@@ -172,7 +178,7 @@ const useFetchData = <T extends RequestData<any>, U = {}>(
       });
     },
     pageSize: pageInfo.pageSize,
-    setPageInfo: info =>
+    setPageInfo: (info) =>
       setPageInfo({
         ...pageInfo,
         ...info,
