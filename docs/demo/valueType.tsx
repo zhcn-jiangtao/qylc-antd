@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import ProTable, { ProColumns } from '@ant-design/pro-table';
+import ProTable, { ProColumns } from 'qylc-pro-table';
 
 const valueEnum = {
   0: 'close',
@@ -109,7 +109,7 @@ const columns: ProColumns<TableListItem>[] = [
     title: '进度',
     key: 'progress',
     dataIndex: 'progress',
-    valueType: item => ({
+    valueType: (item) => ({
       type: 'progress',
       status: item.status !== 'error' ? 'active' : 'exception',
     }),
@@ -179,7 +179,7 @@ export default () => (
       }}
       type="form"
       columns={columns}
-      onSubmit={params => {
+      onSubmit={(params) => {
         // eslint-disable-next-line no-console
         console.log(params);
       }}

@@ -1,8 +1,8 @@
 {
-  "name": "@ant-design/pro-table",
+  "name": "qylc-pro-table",
   "version": "2.1.11",
   "description": "🏆 Use Ant Design Table like a Pro!",
-  "repository": "https://github.com/ant-design/pro-table",
+  "repository": "https://github.com/qylc/pro-table",
   "license": "MIT",
   "files": [
     "/lib",
@@ -92,7 +92,7 @@
     "react": "16.x"
   },
   "authors": {
-    "name": "chenshuai2144",
-    "email": "qixian.cs@outlook.com"
+    "name": "qylc",
+    "email": "hustme@126.com"
   }
 }

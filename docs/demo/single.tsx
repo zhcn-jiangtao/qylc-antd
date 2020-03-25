@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Drawer, Tag } from 'antd';
-import ProTable, { ProColumns, TableDropdown, ActionType } from '@ant-design/pro-table';
+import ProTable, { ProColumns, TableDropdown, ActionType } from 'qylc-pro-table';
 import request from 'umi-request';
 
 interface GithubIssueItem {
@@ -170,7 +170,7 @@ export default () => {
         <ProTable<GithubIssueItem>
           columns={columns}
           type="form"
-          onSubmit={params => console.log(params)}
+          onSubmit={(params) => console.log(params)}
         />
       </Drawer>
       <ProTable<GithubIssueItem>
