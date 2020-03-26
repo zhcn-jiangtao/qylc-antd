@@ -1,1 +1,1 @@
-<code src="./demo/single.tsx" />
+<code src="./single.jsx" />
