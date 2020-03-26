@@ -300,7 +300,7 @@ export const FromInputRender: React.FC<{
                   {...item.formItemProps}
                   onChange={v=>{
                     if(rest.onChange) {
-                      rest.onChange(v.target)
+                      rest.onChange(v.target.checked)
                     }
                   }}
         />

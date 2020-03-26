@@ -108,6 +108,11 @@ const TableList = () => {
             valueType: 'boolean'
         },
         {
+            title: '图片',
+            dataIndex: 'iconUrl',
+            valueType: 'image'
+        },
+        {
             title: '操作',
             dataIndex: 'option',
             valueType: 'option',

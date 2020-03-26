@@ -1,4 +1,3 @@
-[English](./README.en_US.md)
 
 <h1 align="center">@ant-design/pro-table</h1>
 
@@ -10,7 +9,6 @@
 
 ### Demo
 
-[codesandbox](https://codesandbox.io/embed/dreamy-river-q7v6s?fontsize=14&hidenavigation=1&theme=dark&view=preview)
 
 ## API
 
@@ -97,7 +95,8 @@ ref.clearSelected();
 | progress | 进度条 | - |
 | digit | 单纯的数字，form 转化时会转为 inputNumber | - |
 | progress | 进度条 | - |
-
+| boolean | 是否 | - |
+| image | 图片 | - |
 ### valueEnum
 
 当前列值的枚举
