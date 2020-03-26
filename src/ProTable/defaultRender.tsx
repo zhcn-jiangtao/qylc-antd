@@ -5,7 +5,7 @@ import Percent from './component/percent';
 import IndexColumn from './component/indexColumn';
 import { getProgressStatus } from './component/util';
 // @ts-ignore
-import {TableImage} from  'qylc-antd-components'
+import TableImage from  '../TableImage'
 
 /**
  *  显示的时候如何渲染

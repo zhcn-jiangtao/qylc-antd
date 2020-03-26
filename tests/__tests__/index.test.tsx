@@ -1,7 +1,7 @@
 import { render } from 'enzyme';
 import React from 'react';
 import { Input } from 'antd';
-import ProTable, { TableDropdown } from '../../src/index';
+import ProTable, { TableDropdown } from '../../src/ProTable';
 import { columns, request } from './demo';
 
 describe('BasicTable', () => {

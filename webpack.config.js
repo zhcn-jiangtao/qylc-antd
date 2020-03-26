@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/index.js',
   output: {
     library: 'ProTable',
     libraryExport: 'default',
@@ -11,7 +11,7 @@ module.exports = {
   },
   mode: 'production',
   resolve: {
-    extensions: ['.ts', '.tsx', '.json', '.css', '.js'],
+    extensions: ['.ts', '.tsx', '.json', '.css', '.js','.jsx'],
   },
   module: {
     rules: [

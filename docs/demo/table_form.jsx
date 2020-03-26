@@ -1,8 +1,8 @@
 import React from 'react';
-import ProTable from 'qylc-pro-table';
+import {ProTable} from 'qylc-antd';
 
 
-const TableList = () => {
+const TableFormDemo = () => {
     const columns = [
         {
             title: '规则名称',
@@ -19,4 +19,4 @@ const TableList = () => {
     );
 };
 
-export default TableList;
+export default TableFormDemo;

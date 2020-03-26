@@ -12,12 +12,13 @@ import classNames from 'classnames';
 import { parsingValueEnumToArray, useDeepCompareEffect, genColumnKey } from '../component/util';
 import { useIntl, IntlType } from '../component/intlContext';
 import Container from '../container';
-import { ProColumnsValueTypeFunction } from '../defaultRender';
-import { ProColumns, ProColumnsValueType } from '../index';
+import { ProColumnsValueTypeFunction ,ProColumnsValueType} from '../defaultRender';
+import { ProColumns } from '../Table';
+
 import './index.less';
 import FormOption, { FormOptionProps } from './FormOption';
 // @ts-ignore
-import {UploadImage} from 'qylc-antd-components'
+import UploadImage from '../../UploadImage'
 
 /**
  * 默认的查询表单配置
