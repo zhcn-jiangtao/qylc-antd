@@ -1,9 +1,12 @@
 const config = {}
 config.getRemoteUploadUrl = () => 'http://127.0.0.1:8080/common/upload';
 config.getAuthorization = () => {
-    return  localStorage.getItem('jwt')
+    const jwt = localStorage.getItem('jwt');
+    console.log('jwt', jwt)
+    return  jwt
 }
 config.dev =  process.env.NODE_ENV === 'development'
+
 
 if(config.dev) {
     config.getAuthorization = ()=>{
