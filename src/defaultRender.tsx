@@ -4,6 +4,12 @@ import moment from 'moment';
 import Percent from './component/percent';
 import IndexColumn from './component/indexColumn';
 import { getProgressStatus } from './component/util';
+// @ts-ignore
+import {TableImage} from  'qylc-antd-components'
+
+/**
+ *  显示的时候如何渲染
+ */
 
 /**
  * money 金额
@@ -33,6 +39,7 @@ export type ProColumnsValueType =
   | 'percent'
   | 'digit'
   | 'boolean'
+  | 'image'
     ;
 
 // function return type
@@ -116,9 +123,7 @@ const defaultRenderText = <T, U>(
     }
   }
 
-  if(valueType === 'boolean' && text != null) {
-    return text ? '是' : '否'
-  }
+
 
   /**
    * 如果是金额的值
@@ -197,6 +202,17 @@ const defaultRenderText = <T, U>(
   if (valueType === 'percent') {
     return <Percent value={text as number} />;
   }
+
+
+  // add by jt
+  if(valueType === 'boolean' && text != null) {
+    return text ? '是' : '否'
+  }
+
+  if(valueType === 'image' && text != null) {
+    return <TableImage value={text} />
+  }
+
 
   return text;
 };
