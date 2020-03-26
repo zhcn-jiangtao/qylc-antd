@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormInstance, FormItemProps, FormProps } from 'antd/es/form';
-import { Input, Form, Row, Col, TimePicker, InputNumber, DatePicker, Select } from 'antd';
+import { Input, Form, Row, Col, TimePicker, InputNumber, DatePicker, Select,Checkbox } from 'antd';
 import moment, { Moment } from 'moment';
 import RcResizeObserver from 'rc-resize-observer';
 import useMediaQuery from 'use-media-antd-query';
@@ -290,6 +290,23 @@ export const FromInputRender: React.FC<{
       />
     );
   }
+
+  // add by jt: 增加boolean 的编辑框
+  if (valueType === 'boolean' && rest.type === 'form') {
+    return (
+        <Checkbox
+                  checked={rest.value}
+                  ref={ref}
+                  {...item.formItemProps}
+                  onChange={v=>{
+                    if(rest.onChange) {
+                      rest.onChange(v.target)
+                    }
+                  }}
+        />
+    );
+  }
+
   return (
     <Input
       placeholder={intl.getMessage('tableFrom.inputPlaceholder', '请输入')}
