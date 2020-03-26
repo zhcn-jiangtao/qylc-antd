@@ -302,7 +302,6 @@ export const FromInputRender: React.FC<{
                   {...item.formItemProps}
                   onChange={v=>{
                     if(rest.onChange) {
-                      debugger
                       rest.onChange(v.target.checked)
                     }
                   }}
@@ -312,7 +311,7 @@ export const FromInputRender: React.FC<{
 
   if (valueType === 'image' && rest.type === 'form') {
     return (
-        <UploadImage></UploadImage>
+        <UploadImage ref={ref}    {...item.formItemProps}  {...rest}></UploadImage>
     );
   }
 
@@ -366,7 +365,6 @@ const conversionValue = (
 
 
   Object.keys(value).forEach(key => {
-    debugger
     const column = proColumnsMap[key || 'null'] || {};
     const valueType = column.valueType || 'text';
     const itemValue = value[key];

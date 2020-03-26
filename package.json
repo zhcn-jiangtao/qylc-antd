@@ -1,6 +1,6 @@
 {
   "name": "qylc-pro-table",
-  "version": "2.1.20",
+  "version": "2.1.21",
   "description": "🏆 Use Ant Design Table like a Pro!",
   "repository": "https://github.com/qylc/pro-table",
   "license": "MIT",
@@ -39,8 +39,7 @@
     "unstated-next": "^1.1.0",
     "use-json-comparison": "^1.0.5",
     "use-media-antd-query": "1.0.1",
-    "use-merge-value": "^1.0.1",
-    "qylc-antd-components": "^1.0.3"
+    "use-merge-value": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
