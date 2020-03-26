@@ -590,9 +590,13 @@ const FormSearch = <T, U = {}>({
         ...rest
       } = item;
       const key = genColumnKey(rest.key, dataIndex);
+
+      const formRest = {...rest};
+      delete formRest.sorter
+
       return (
         <Col {...colConfig} key={key}>
-          <Form.Item labelAlign="right" label={rest.title} name={key} {...(isForm && rest)}>
+          <Form.Item labelAlign="right" label={rest.title} name={key} {...(isForm && formRest)}>
             <FromInputRender item={item} type={type} />
           </Form.Item>
         </Col>
