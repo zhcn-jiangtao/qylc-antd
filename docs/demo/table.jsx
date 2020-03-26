@@ -1,7 +1,9 @@
 import {PlusOutlined} from '@ant-design/icons';
 import {Button, Divider, message, Modal} from 'antd';
 import React, {useRef, useState} from 'react';
-import {ProTable, config} from 'qylc-antd';
+import {ProTable,  get, post} from 'qylc-antd';
+
+
 
 async function queryRule(params) {
     return get('/api/sys/postLevel/list', params)

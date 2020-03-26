@@ -5,6 +5,7 @@ import RemoteSelect from './RemoteSelect'
 import RemoteTreeSelect from './RemoteTreeSelect'
 import ProTable from './ProTable'
 import config from "./config";
+import request, {get, post} from "./utils/request";
 
 export {
     TableImage,
@@ -12,5 +13,8 @@ export {
     RemoteSelect,
     RemoteTreeSelect,
     ProTable,
-    config
+    config,
+    request,
+    get,
+    post
 }
