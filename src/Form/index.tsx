@@ -16,6 +16,8 @@ import { ProColumnsValueTypeFunction } from '../defaultRender';
 import { ProColumns, ProColumnsValueType } from '../index';
 import './index.less';
 import FormOption, { FormOptionProps } from './FormOption';
+// @ts-ignore
+import {UploadImage} from 'qylc-antd-components'
 
 /**
  * 默认的查询表单配置
@@ -300,10 +302,17 @@ export const FromInputRender: React.FC<{
                   {...item.formItemProps}
                   onChange={v=>{
                     if(rest.onChange) {
+                      debugger
                       rest.onChange(v.target.checked)
                     }
                   }}
         />
+    );
+  }
+
+  if (valueType === 'image' && rest.type === 'form') {
+    return (
+        <UploadImage></UploadImage>
     );
   }
 
@@ -355,14 +364,16 @@ const conversionValue = (
 ) => {
   const tmpValue = {};
 
+
   Object.keys(value).forEach(key => {
+    debugger
     const column = proColumnsMap[key || 'null'] || {};
     const valueType = column.valueType || 'text';
     const itemValue = value[key];
 
     // 如果值是 "all"，或者不存在直接删除
     // 下拉框里选 all，会删除
-    if (!itemValue || (itemValue === 'all' && column.valueEnum)) {
+    if (itemValue == null || (itemValue === 'all' && column.valueEnum)) {
       return;
     }
 
@@ -516,8 +527,13 @@ const FormSearch = <T, U = {}>({
     }
     try {
       const value = await form.validateFields();
+      console.log('xxx')
+      console.log(value)
+
       if (onSubmit) {
-        onSubmit(conversionValue(value, dateFormatter, proColumnsMap) as T);
+        let conversionValue1 = conversionValue(value, dateFormatter, proColumnsMap) as T;
+        console.log(conversionValue1)
+        onSubmit(conversionValue1);
       }
     } catch (error) {
       // console.log(error)
