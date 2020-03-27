@@ -6,19 +6,19 @@ import {ProTable,  get, post} from 'qylc-antd';
 
 
 async function queryRule(params) {
-    return get('/api/sys/postLevel/list', params)
+    return get('/api/sys/user/list', params)
 }
 
 async function removeRule(params) {
-    return post('/api/sys/postLevel/delete', params);
+    return post('/api/sys/user/delete', params);
 }
 
 async function addRule(params) {
-    return post('/api/sys/postLevel/add', params)
+    return post('/api/sys/user/add', params)
 }
 
 async function updateRule(params) {
-    return post('/api/sys/postLevel/edit', params)
+    return post('/api/sys/user/edit', params)
 }
 
 
@@ -81,7 +81,7 @@ const handleRemove = async selectedRows => {
 };
 
 const TableList = () => {
-    const [sorter, setSorter] = useState('');
+    const [sorter, setSorter] = useState('aabb');
     const [createModalVisible, handleModalVisible] = useState(false);
     const [updateModalVisible, handleUpdateModalVisible] = useState(false);
     const [formValues, setFormValues] = useState({});
@@ -137,16 +137,6 @@ const TableList = () => {
         <>
             <ProTable
                 actionRef={actionRef}
-                onChange={(_, _filter, _sorter) => {
-                    const sorterResult = _sorter;
-
-                    if (sorterResult.field) {
-                        setSorter(`${sorterResult.field}_${sorterResult.order}`);
-                    }
-                }}
-                params={{
-                    sorter,
-                }}
                 toolBarRender={(action, {selectedRows}) => [
                     <Button type="primary" onClick={() => handleModalVisible(true)}>
                         <PlusOutlined/> 新建
