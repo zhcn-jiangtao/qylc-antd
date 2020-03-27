@@ -88,7 +88,7 @@ const TableList = () => {
     const actionRef = useRef();
     const columns = [
         {
-            title: '规则名称',
+            title: '名称',
             dataIndex: 'name',
             sorter: true,
             rules: [
@@ -97,6 +97,12 @@ const TableList = () => {
                     message: '规则名称为必填项',
                 },
             ],
+        },
+        {
+            title: '性别',
+            dataIndex: 'sex',
+            sorter: true,
+            valueEnum:{MALE:'男', FEMALE:'女'}
         },
         {
             title: '等级',
