@@ -1,7 +1,7 @@
 import './index.less';
 
 import React, {useEffect, CSSProperties, useRef, useState, ReactNode} from 'react';
-import {Table, ConfigProvider, Card, Typography, Empty, Tooltip} from 'antd';
+import {Table, ConfigProvider, Card, Typography, Empty, Tooltip, message} from 'antd';
 import classNames from 'classnames';
 import useMergeValue from 'use-merge-value';
 import {stringify} from 'use-json-comparison';
@@ -34,6 +34,7 @@ import defaultRenderText, {
     ProColumnsValueTypeFunction,
 } from './defaultRender';
 import {DensitySize} from './component/toolBar/DensityIcon';
+import {exportTableByDom} from "./utils/excel";
 
 type TableRowSelection = TableProps<any>['rowSelection'];
 
@@ -507,6 +508,8 @@ const ProTable = <T extends {}, U extends object>(
     // add by jt, 排序过滤查询
     const [queryParam, setQueryParam] = useState<{}>({});
 
+    const tableId = ("table" +  Math.random()).replace(".", "")
+
     // add by jt: set default value
     if (rest.rowKey == null) {
         rest.rowKey = 'id';
@@ -755,6 +758,20 @@ const ProTable = <T extends {}, U extends object>(
 
     console.log('rest', rest)
     const className = classNames(defaultClassName, propsClassName);
+
+    function onExport(k: string) {
+        // @ts-ignore
+        let dom = document.getElementById(tableId);
+        if(k === 'table') {
+            exportTableByDom(dom)
+        }else {
+            message.error('暂不支持导出全部，如导出数据量大，可增加每页行数')
+        }
+
+
+    }
+
+    // @ts-ignore
     return (
         <ConfigProvider
             getPopupContainer={() => ((rootRef.current || document.body) as any) as HTMLElement}
@@ -805,6 +822,7 @@ const ProTable = <T extends {}, U extends object>(
                                 options={options}
                                 headerTitle={headerTitle}
                                 action={action}
+                                onExport={(k:string)=>onExport(k)}
                                 selectedRows={selectedRows}
                                 selectedRowKeys={selectedRowKeys}
                                 toolBarRender={toolBarRender}
@@ -820,6 +838,7 @@ const ProTable = <T extends {}, U extends object>(
                             />
                         )}
                         <Table<T>
+                            id={tableId}
                             {...rest}
                             size={counter.tableSize}
                             rowSelection={propsRowSelection === false ? undefined : rowSelection}
