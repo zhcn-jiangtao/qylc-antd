@@ -3,7 +3,7 @@ import {VerticalAlignBottomOutlined} from '@ant-design/icons'
 import React from "react";
 
 const {Option} = Select;
-import config from "../config";
+import {post, get} from '../utils/request'
 
 
 
@@ -58,9 +58,8 @@ class Index extends React.Component {
       pageNumber = pageNumber + 1;
       this.setState({pageNumber})
     }
-    const request = config.getRequest();
 
-    request.get(url, {params: {searchText, selected: selected, pageNumber: pageNumber}}).then(rs => {
+    get(url, {params: {searchText, selected: selected, pageNumber: pageNumber}}).then(rs => {
       if (fetchId !== this.lastFetchId) {
         // for fetch callback order
         return;

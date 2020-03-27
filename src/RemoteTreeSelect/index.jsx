@@ -1,7 +1,7 @@
 import {message, TreeSelect} from 'antd';
 
 import React from "react";
-import config from "../config";
+import {post, get} from '../utils/request'
 /**
  * props : url
  */
@@ -26,14 +26,16 @@ class Index extends React.Component {
     const {url} = this.props;
     this.setState({fetching: true});
 
-    let request = config.getRequest();
 
-    request.get(url).then(rs => {
+    get(url).then(rs => {
       if (rs.error) {
         message.error(rs.msg);
         this.setState({fetching: false});
         return;
       }
+
+
+
       let list = rs;
 
       if (!(list instanceof Array)) {

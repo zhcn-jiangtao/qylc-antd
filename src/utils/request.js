@@ -4,7 +4,7 @@
  */
 
 import {extend} from 'umi-request';
-import {notification} from 'antd';
+import {notification,message} from 'antd';
 import config from "../config";
 
 const codeMessage = {
@@ -79,4 +79,23 @@ export async function post(url,params) {
     });
 }
 
+
+async function _handle(isGet, url, params, title) {
+    const hide = message.loading(title || '处理中');
+    const rs = isGet ? await get(url, params) : await post(url, params);
+    hide();
+    if (rs.error) {
+        message.error(rs.msg);
+    } else {
+        message.success(rs.msg);
+    }
+    return rs;
+}
+
+export async function handleGet(url, params, title) {
+    return await _handle(true, url, params, title)
+}
+export async function handlePost(url, params, title) {
+    return await _handle(false, url, params, title)
+}
 export default request;
