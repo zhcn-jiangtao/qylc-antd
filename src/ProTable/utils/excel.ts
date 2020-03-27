@@ -5,24 +5,16 @@
 // @ts-ignore
 import ExportJsonExcel from "js-export-excel";
 
-// 导出本页Table中内容
-export function exportTable() {
-    alert('导出本页')
-}
-
 export function exportTableByDom(dom: HTMLElement | null) {
     if (dom == null) {
         return
     }
-    var option = {
-        fileName: 'excel'
-    };
 
     let thList = dom.getElementsByTagName('th');
 
     let ignoreIndex: number[] = [];
     let header = [];
-    let data: any[] = []
+    let data = []
 
     for (let i = 0; i < thList.length; i++) {
         let th = thList[i]
@@ -42,7 +34,7 @@ export function exportTableByDom(dom: HTMLElement | null) {
         let tdList = tr.getElementsByTagName('td')
         let row = [];
         for (let colIndex = 0; colIndex < tdList.length; colIndex++) {
-            if(ignoreIndex.indexOf(colIndex) != -1) {
+            if (ignoreIndex.indexOf(colIndex) != -1) {
                 continue;
             }
             let td = tdList[colIndex];
@@ -52,17 +44,17 @@ export function exportTableByDom(dom: HTMLElement | null) {
         data.push(row)
     }
 
-
-    option.datas = [
-        {
+    let options = {
+        fileName: 'excel',
+        datas: [{
             sheetData: data,
             sheetName: 'sheet',
             sheetHeader: header,
             columnWidths: [20, 20]
-        },
-    ];
-
-    var toExcel = new ExportJsonExcel(option); //new
+        }]
+    };
+    console.log(options)
+    var toExcel = new ExportJsonExcel(options);
     toExcel.saveExcel(); //保存
 }
 

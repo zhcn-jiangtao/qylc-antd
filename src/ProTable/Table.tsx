@@ -264,6 +264,7 @@ export interface ProTableProps<T, U extends { [key: string]: any }>
      * 提交表单时触发
      */
     onSubmit?: (params: U) => void;
+
 }
 
 const mergePagination = <T extends any[], U>(
@@ -280,6 +281,10 @@ const mergePagination = <T extends any[], U>(
     }
     return {
         total: action.total,
+        showSizeChanger: true,
+        showQuickJumper: true,
+        pageSizeOptions:['10', '20', '50', '100', '500'],
+
         ...(defaultPagination as TablePaginationConfig),
         current,
         pageSize,
@@ -521,6 +526,7 @@ const ProTable = <T extends {}, U extends object>(
     if (rest.size == null) {
         rest.size = "middle"
     }
+
 
     if (rest.onChange == null) {
         rest.onChange = (pagination, filters, sorter, extra) => {
