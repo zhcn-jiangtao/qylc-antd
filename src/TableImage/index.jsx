@@ -48,7 +48,6 @@ class TableImage extends React.Component {
             visible: true,
             imgUrl: url,
         });
-        console.log(url)
     }
 
 

@@ -22,7 +22,6 @@ class Index extends React.Component {
 
   fetchUser = () => {
     const {url} = this.props;
-    console.log(url)
     this.setState({fetching: true});
     get(url).then(rs => {
       if (rs.error) {

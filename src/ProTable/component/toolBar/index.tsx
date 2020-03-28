@@ -80,7 +80,6 @@ const renderDefaultOption = <T, U = {}>(
     Object.keys(options)
         .filter(item => item)
         .map((key, index) => {
-            console.log(key)
             const value = options[key];
             if (!value) {
                 return null;

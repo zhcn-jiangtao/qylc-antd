@@ -89,11 +89,15 @@ const useFetchData = <T extends RequestData<any>, U = {}>(
         const {pageSize, page} = pageInfo;
 
         try {
-            const {data, success, total: dataTotal = 0} =
-            (await getData({
-                current: page,
-                pageSize,
-            })) || {};
+            let responseData = await getData({current: page, pageSize});
+            if (responseData == null || responseData.data == null) {
+                // @ts-ignore
+                responseData = {data: [], success: false, total: 0}
+            }
+
+            const {data, success, total: dataTotal = 0} = responseData;
+
+
             if (success !== false) {
                 if (isAppend && list) {
                     setList([...list, ...data]);

@@ -543,7 +543,6 @@ const ProTable = <T extends {}, U extends object>(
                     setQueryParam({orderBy: ''})
                 }
             }
-            console.log('onChange', params)
         }
     }
 
@@ -762,7 +761,6 @@ const ProTable = <T extends {}, U extends object>(
         return <Empty/>;
     }
 
-    console.log('rest', rest)
     const className = classNames(defaultClassName, propsClassName);
 
     function onExport(k: string) {

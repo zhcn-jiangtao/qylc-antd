@@ -59,7 +59,6 @@ class UploadImage extends Component {
     };
 
     handleChange = ({fileList}) => {
-        console.log('Upload Image onChange', fileList)
         this.setState({fileList});
         console.log(this.props)
         if (this.props.onChange) {
@@ -73,7 +72,6 @@ class UploadImage extends Component {
                 }
             })
             const fileValue = file.join(",");
-            console.log("Upload Image trigger onChange", fileValue)
             this.props.onChange(fileValue)
         }
     }

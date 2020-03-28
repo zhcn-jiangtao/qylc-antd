@@ -526,12 +526,9 @@ const FormSearch = <T, U = {}>({
     }
     try {
       const value = await form.validateFields();
-      console.log('xxx')
-      console.log(value)
 
       if (onSubmit) {
-        let conversionValue1 = conversionValue(value, dateFormatter, proColumnsMap) as T;
-        console.log(conversionValue1)
+        const conversionValue1 = conversionValue(value, dateFormatter, proColumnsMap) as T;
         onSubmit(conversionValue1);
       }
     } catch (error) {
