@@ -2,10 +2,8 @@
  * request 网络请求工具
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
-
 import {extend} from 'umi-request';
-import {notification,message} from 'antd';
-import config from "../config";
+import {message, notification} from 'antd';
 
 const codeMessage = {
     200: '服务器成功返回请求的数据。',
@@ -30,7 +28,6 @@ const codeMessage = {
 
 const errorHandler = error => {
     const {response} = error;
-
     if (response && response.status) {
         const errorText = codeMessage[response.status] || response.statusText;
         const {status, url} = response;
@@ -47,26 +44,29 @@ const errorHandler = error => {
         });
     }
 
+
     return response;
 };
 /**
  * 配置request请求时的默认参数
  */
 
-const prefix = config.dev ? config.devServer : null;
 const request = extend({
     errorHandler,
+    // 默认错误处理
     credentials: 'omit', // 默认请求是否带上cookie
-    prefix
 });
 
 
 // 设置登陆header
 request.interceptors.request.use((url, options) => {
-    // eslint-disable-next-line no-param-reassign
-    options.headers.Authorization = config.getAuthorization();
-    return {url, options}
+    let jwt = localStorage.getItem("jwt");
+    options.headers['Authorization'] = jwt;
+    return {url: url, options: options}
 })
+
+
+export default request;
 
 export async function get(url, params) {
     return request(url, {
@@ -74,13 +74,12 @@ export async function get(url, params) {
     });
 }
 
-export async function post(url,params) {
+export async function post(url, params) {
     return request(url, {
         method: 'POST',
         data: params,
     });
 }
-
 
 async function _handle(isGet, url, params, title) {
     const hide = message.loading(title || '处理中');
@@ -97,7 +96,8 @@ async function _handle(isGet, url, params, title) {
 export async function handleGet(url, params, title) {
     return await _handle(true, url, params, title)
 }
+
 export async function handlePost(url, params, title) {
     return await _handle(false, url, params, title)
 }
-export default request;
+
