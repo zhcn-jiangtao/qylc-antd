@@ -131,7 +131,7 @@ class Index extends React.Component {
               <span style={{float: "right"}}>
 
               {this.state.last ? '已加载全部数据' : <a style={{cursor: 'pointer'}} onClick={this.loadMore}>
-                更多 <VerticalAlignBottomOutlined />
+                更多...
               </a>}
               </span>
             </div>

@@ -81,7 +81,6 @@ const handleRemove = async selectedRows => {
 };
 
 const TableList = () => {
-    const [sorter, setSorter] = useState('aabb');
     const [createModalVisible, handleModalVisible] = useState(false);
     const [updateModalVisible, handleUpdateModalVisible] = useState(false);
     const [formValues, setFormValues] = useState({});
@@ -97,6 +96,8 @@ const TableList = () => {
                     message: '规则名称为必填项',
                 },
             ],
+
+            
         },
         {
             title: '性别',
